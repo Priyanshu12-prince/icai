@@ -1,30 +1,31 @@
 import React from 'react';
+import { imageUrl } from '../imageUrl';
 
 const KnowledgeHub = () => {
   const knowledgeCards = [
     {
       title: "Banking System\nLoan Schemes of Govt.",
-      icon: "https://images.pexels.com/photos/3184474/pexels-photo-3184474.jpeg?auto=compress&cs=tinysrgb&w=30&h=33&fit=crop",
+      icon: imageUrl.k1
     },
     {
       title: "Book",
-      icon: "https://images.pexels.com/photos/3184475/pexels-photo-3184475.jpeg?auto=compress&cs=tinysrgb&w=30&h=33&fit=crop",
+      icon: imageUrl.k2
     },
     {
       title: "Dealing with\nFinancial Crises",
-      icon: "https://images.pexels.com/photos/3184476/pexels-photo-3184476.jpeg?auto=compress&cs=tinysrgb&w=30&h=33&fit=crop",
+     icon: imageUrl.k3
     },
     {
       title: "Digital Payment\nProcess & Safeguard",
-      icon: "https://images.pexels.com/photos/3184477/pexels-photo-3184477.jpeg?auto=compress&cs=tinysrgb&w=30&h=33&fit=crop",
+    icon: imageUrl.k4
     },
     {
       title: "Retirement Planning\nand Succession",
-      icon: "https://images.pexels.com/photos/3184478/pexels-photo-3184478.jpeg?auto=compress&cs=tinysrgb&w=30&h=33&fit=crop",
+    icon: imageUrl.k5
     },
     {
       title: "Utility of Credit Cards",
-      icon: "https://images.pexels.com/photos/3184479/pexels-photo-3184479.jpeg?auto=compress&cs=tinysrgb&w=30&h=33&fit=crop",
+     icon: imageUrl.k6
     },
   ];
 
@@ -48,16 +49,14 @@ const KnowledgeHub = () => {
           {knowledgeCards.map((card, index) => (
             <div
               key={index}
-              className="h-96 rounded-2xl p-6 relative bg-gradient-to-br from-blue-900 to-blue-700 text-white cursor-pointer hover:shadow-lg transition-shadow"
+              className=""
             >
-              <h3 className="text-xl font-bold leading-7 whitespace-pre-line">
-                {card.title}
-              </h3>
-              <div className="absolute bottom-6 right-6">
+             
+              <div className="">
                 <img
                   src={card.icon}
-                  alt="Plus"
-                  className="w-8 h-8"
+                 
+                 
                 />
               </div>
             </div>

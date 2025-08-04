@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "../css/calculator.css"
 
 const Calculator = () => {
   const [formData, setFormData] = useState({
@@ -23,21 +24,27 @@ const Calculator = () => {
     { id: 'loan-emi', label: 'LOAN EMI\nCALCULATOR', active: true },
     { id: 'sip', label: 'SIP\nCALCULATOR', active: false },
     { id: 'simple-interest', label: 'SIMPLE INTEREST\nCALCULATOR', active: false },
+    { id: 'loan-emi', label: 'LOAN EMI\nCALCULATOR', active: false },
+    { id: 'sip', label: 'SIP\nCALCULATOR', active: false },
+    { id: 'simple-interest', label: 'SIMPLE INTEREST\nCALCULATOR', active: false },
+    { id: 'sip', label: 'SIP\nCALCULATOR', active: false },
+    { id: 'simple-interest', label: 'SIMPLE INTEREST\nCALCULATOR', active: false },
+
+
   ];
 
   return (
-    <section className="w-full py-16 bg-blue-900">
-      <div className="max-w-6xl mx-auto px-8">
+    <section className=" calculatorSection">
+      <div className="">
         {/* Calculator Tabs */}
         <div className="flex gap-4 mb-8">
           {calculatorTabs.map((tab) => (
             <div
               key={tab.id}
-              className={`px-8 py-4 rounded text-center font-bold text-sm ${
-                tab.active
-                  ? 'bg-gray-100 text-blue-900'
-                  : 'border border-white text-white'
-              }`}
+              className={`tabText mx-auto px-4 py-4 rounded text-center font-bold text-sm ${tab.active
+                ? 'bg-gray-100 text-blue-900'
+                : 'border border-white text-white'
+                }`}
             >
               {tab.label.split('\n').map((line, i) => (
                 <div key={i}>{line}</div>
@@ -46,10 +53,10 @@ const Calculator = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12  CalculatorContainer">
           {/* Left Column - Form */}
           <div className="text-white">
-            <h2 className="text-3xl font-bold mb-4">Loan EMI Calculator</h2>
+            <h2 className="text-3xl font-bold mb-4  calText ">Loan EMI Calculator</h2>
             <p className="mb-8 text-gray-200">
               Fill in the loan amount, interest rate, and loan tenure below.
               Then click on 'calculate' to view the resulting EMI and the breakup.
@@ -102,7 +109,7 @@ const Calculator = () => {
           </div>
 
           {/* Right Column - Results */}
-          <div className="text-white">
+          <div className="text-white barGraph">
             <div className="grid grid-cols-3 gap-8 mb-8 text-center">
               <div>
                 <h3 className="font-bold mb-2">Your EMI</h3>
@@ -120,7 +127,7 @@ const Calculator = () => {
             </div>
 
             {/* Chart Placeholder */}
-            <div className="bg-blue-800 rounded-lg p-8 text-center">
+            <div className=" rounded-lg p-8 text-center">
               <h4 className="font-bold mb-4">BREAKUP OF TOTAL PAYMENT</h4>
               <div className="w-64 h-64 mx-auto bg-blue-700 rounded-full flex items-center justify-center">
                 <span className="text-sm">Chart Visualization</span>

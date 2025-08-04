@@ -1,0 +1,41 @@
+.calculatorSection {
+    background-color: #023C6C;
+    padding: 50px;
+}
+
+.tabText {
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 14px;
+}
+
+.tabText:hover {
+    background: white;
+    color: black;
+}
+
+.barGraph {
+    background: radial-gradient(90.16% 143.01% at 15.32% 21.04%, rgba(165, 239, 255, 0.2) 0%, rgba(110, 191, 244, 0.0447917) 77.08%, rgba(70, 144, 213, 0) 100%)
+        /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
+    ;
+    border: 2px dotted #FFFFFF33;
+    border-radius: 20px;
+    padding: 2px;
+}
+
+.CalculatorContainer {
+    background: radial-gradient(90.16% 143.01% at 15.32% 21.04%, rgba(165, 239, 255, 0.2) 0%, rgba(110, 191, 244, 0.0447917) 77.08%, rgba(70, 144, 213, 0) 100%)
+        /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
+    ;
+    border: 2px solid #FFFFFF33;
+    padding: 20px;
+    border-radius: 20px;
+    font-family:Inter;
+}
+.calText{
+     font-family: Inter;
+     font-weight: 700;
+     font-size: 28px;
+     line-height: 14px;
+}

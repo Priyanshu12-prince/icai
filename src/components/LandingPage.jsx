@@ -1,5 +1,6 @@
 import React from 'react';
 import { imageUrl } from '../imageUrl';
+import "../css/header.css"
 const LandingPage = () => {
   const paginationDots = [
     { active: true },
@@ -10,7 +11,7 @@ const LandingPage = () => {
 
   return (
     <section 
-      className="w-full h-screen relative bg-cover bg-center bg-no-repeat"
+      className="w-full h-[90vh] relative bg-cover bg-center bg-no-repeat"
       style={{ 
         backgroundImage: `url(${imageUrl.landingImage})` 
       }}
@@ -18,11 +19,12 @@ const LandingPage = () => {
       {/* Hero Content */}
       <div className="text-center text-white">
         <div className="flex items-center justify-center gap-4 mb-4">
-          <h1 className="text-7xl font-black">ICAI</h1>
-          <div className="text-center">
-            <div className="text-8xl font-bold">foÙkh; Kku</div>
-            <div className="text-8xl font-bold">dk vfHk;ku</div>
+          
+          <div className="text-center mt-[50px]">
+            <div className="text-8xl font-bold imageText mb-[20px]">वित्तीय ज्ञान </div>
+            <div className="text-8xl font-bold imageText">ICAI का अभिमान </div>
           </div>
+            
         </div>
       </div>
 

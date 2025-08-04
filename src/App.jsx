@@ -14,10 +14,11 @@ function App() {
       <Header />
       <LandingPage />
       <Leadership />
+      <Calculator />
       <KnowledgeHub />
       <GallerySection />
       <LearnAndPlay />
-      <Calculator />
+
       <FAQ />
     </div>
   );
