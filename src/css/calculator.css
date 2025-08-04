@@ -63,3 +63,167 @@
     font-size: 14px;
     line-height: 19px;
 }
+/* CSS Pie Chart for Calculator Component */
+
+.chart-container-calc {
+  position: relative;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+/* Pie Chart */
+.pie-chart-calc {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.pie-half-calc {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+}
+
+.left-half-calc {
+  left: 0;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.right-half-calc {
+  right: 0;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.pie-segment-calc {
+  width: 100%;
+  height: 100%;
+}
+
+/* Gradients */
+.orange-gradient-calc {
+  background: linear-gradient(180deg, #F2F2F2 0%, #DA702D 100%);
+}
+
+.blue-gradient-calc {
+  background: linear-gradient(0deg, #023C6C 0%, #64A3D9 100%);
+}
+
+/* Center circle for 3D effect */
+.center-circle-calc {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+}
+
+/* Chart Labels */
+.chart-labels-calc {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  height: 250px;
+  pointer-events: none;
+}
+
+.label-calc {
+  position: absolute;
+  font-size: 12px;
+  opacity: 0.85;
+  font-weight: 500;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+}
+
+.left-label-calc {
+  left: -70px;
+  text-align: right;
+}
+
+.right-label-calc {
+  right: -70px;
+  text-align: left;
+}
+
+/* Responsive adjustments for calculator */
+@media (max-width: 1024px) {
+  .pie-chart-calc {
+    width: 220px;
+    height: 220px;
+  }
+  
+  .chart-labels-calc {
+    width: 320px;
+    height: 220px;
+  }
+  
+  .left-label-calc {
+    left: -60px;
+  }
+  
+  .right-label-calc {
+    right: -60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pie-chart-calc {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .chart-labels-calc {
+    width: 300px;
+    height: 200px;
+  }
+  
+  .left-label-calc {
+    left: -50px;
+    font-size: 11px;
+  }
+  
+  .right-label-calc {
+    right: -50px;
+    font-size: 11px;
+  }
+  
+  .center-circle-calc {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Hover effects */
+.pie-chart-calc:hover .pie-segment-calc {
+  filter: brightness(1.1);
+  transition: filter 0.3s ease;
+}
+
+/* Animation */
+.pie-chart-calc {
+  animation: fadeInChart 0.8s ease-in-out;
+}
+
+@keyframes fadeInChart {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+

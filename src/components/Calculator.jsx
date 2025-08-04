@@ -29,8 +29,6 @@ const Calculator = () => {
     { id: 'simple-interest', label: 'SIMPLE INTEREST\nCALCULATOR', active: false },
     { id: 'sip', label: 'SIP\nCALCULATOR', active: false },
     { id: 'simple-interest', label: 'SIMPLE INTEREST\nCALCULATOR', active: false },
-
-
   ];
 
   return (
@@ -126,20 +124,30 @@ const Calculator = () => {
               </div>
             </div>
 
-            {/* Chart Placeholder */}
-            <div className=" rounded-lg p-8 text-center">
-              <h4 className="font-bold mb-4">BREAKUP OF TOTAL PAYMENT</h4>
-              <div className="w-64 h-64 mx-auto bg-blue-700 rounded-full flex items-center justify-center">
-                <span className="text-sm">Chart Visualization</span>
-              </div>
-              <div className="flex justify-center gap-8 mt-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-2 bg-orange-600 rounded"></div>
-                  <span className="text-xs">Interest Amount</span>
+            {/* CSS Pie Chart */}
+            <div className="rounded-lg p-8 text-center">
+              <h4 className="font-bold mb-6 text-sm tracking-wider opacity-90">BREAKUP OF TOTAL PAYMENT</h4>
+              
+              <div className="chart-container-calc">
+                <div className="pie-chart-calc">
+                  {/* Left half - Interest Amount (Orange) */}
+                  <div className="pie-half-calc left-half-calc">
+                    <div className="pie-segment-calc orange-gradient-calc"></div>
+                  </div>
+                  
+                  {/* Right half - Principal (Blue) */}
+                  <div className="pie-half-calc right-half-calc">
+                    <div className="pie-segment-calc blue-gradient-calc"></div>
+                  </div>
+                  
+                  {/* Center circle for 3D effect */}
+                  <div className="center-circle-calc"></div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-2 bg-blue-400 rounded"></div>
-                  <span className="text-xs">Principal</span>
+                
+                {/* Labels */}
+                <div className="chart-labels-calc">
+                  <div className="label-calc left-label-calc">Interest Amount</div>
+                  <div className="label-calc right-label-calc">Principal</div>
                 </div>
               </div>
             </div>
@@ -151,3 +159,4 @@ const Calculator = () => {
 };
 
 export default Calculator;
+
