@@ -1,50 +1,49 @@
 import React from 'react';
-
+import { imageUrl } from '../imageUrl';
 const GallerySection = () => {
   const galleryImages = [
     {
-      src: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=623&h=200&fit=crop",
+      src: imageUrl.g1,
       alt: "Gallery Image 1",
       className: "col-span-2 row-span-1",
     },
     {
-      src: "https://images.pexels.com/photos/3184466/pexels-photo-3184466.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop",
+     src: imageUrl.g2,
       alt: "Gallery Image 2",
       className: "col-span-1 row-span-1",
     },
     {
-      src: "https://images.pexels.com/photos/3184467/pexels-photo-3184467.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop",
+     src: imageUrl.g3,
       alt: "Gallery Image 3",
       className: "col-span-1 row-span-1",
     },
     {
-      src: "https://images.pexels.com/photos/3184468/pexels-photo-3184468.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop",
+    src: imageUrl.g4,
       alt: "Gallery Image 4",
       className: "col-span-1 row-span-1",
     },
     {
-      src: "https://images.pexels.com/photos/3184469/pexels-photo-3184469.jpeg?auto=compress&cs=tinysrgb&w=300&h=421&fit=crop",
+       src: imageUrl.g5,
       alt: "Gallery Image 5",
       className: "col-span-1 row-span-2",
     },
     {
-      src: "https://images.pexels.com/photos/3184470/pexels-photo-3184470.jpeg?auto=compress&cs=tinysrgb&w=623&h=200&fit=crop",
+      src: imageUrl.g6,
       alt: "Gallery Image 6",
       className: "col-span-2 row-span-1",
     },
     {
-      src: "https://images.pexels.com/photos/3184471/pexels-photo-3184471.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop",
+     src: imageUrl.g7,
       alt: "Gallery Image 7",
       className: "col-span-1 row-span-1",
     },
     {
-      src: "https://images.pexels.com/photos/3184472/pexels-photo-3184472.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop",
+     src: imageUrl.g2,
       alt: "Gallery Image 8",
       className: "col-span-1 row-span-1",
     },
     {
-      src: "https://images.pexels.com/photos/3184473/pexels-photo-3184473.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop",
-      alt: "Gallery Image 9",
+     src: imageUrl.g1,
       className: "col-span-1 row-span-1",
     },
   ];

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { imageUrl } from '../imageUrl';
+import "../css/calculator.css"
 
 const LearnAndPlay = () => {
   const [activeTab, setActiveTab] = useState('activities');
@@ -13,17 +15,17 @@ const LearnAndPlay = () => {
     {
       title: "Types of Loan",
       description: "Develop an understanding about the different types of loans.",
-      image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=426&h=324&fit=crop",
+      image: imageUrl.a1,
     },
     {
       title: "Handling Financial Crises",
       description: "Develop an understanding of appropriate actions to be taken in a financial crisis situation.",
-      image: "https://images.pexels.com/photos/3184466/pexels-photo-3184466.jpeg?auto=compress&cs=tinysrgb&w=426&h=324&fit=crop",
+     image: imageUrl.a2,
     },
     {
       title: "Analyze Your Spending",
       description: "Explore your spending preferences in this activity.",
-      image: "https://images.pexels.com/photos/3184467/pexels-photo-3184467.jpeg?auto=compress&cs=tinysrgb&w=426&h=324&fit=crop",
+     image: imageUrl.a3,
     },
   ];
 
@@ -69,10 +71,10 @@ const LearnAndPlay = () => {
                   style={{ backgroundImage: `url(${card.image})` }}
                 />
                 <div className="p-6 text-center">
-                  <h3 className="text-xl font-bold text-blue-900 mb-4">
+                  <h3 className=" mb-4 aText">
                     {card.title}
                   </h3>
-                  <p className="text-gray-600 text-sm mb-6 leading-relaxed">
+                  <p className=" mb-6 leading-relaxed aDis">
                     {card.description}
                   </p>
                   <button className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-2 rounded font-bold transition-colors">

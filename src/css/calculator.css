@@ -31,11 +31,35 @@
     border: 2px solid #FFFFFF33;
     padding: 20px;
     border-radius: 20px;
-    font-family:Inter;
+    font-family: Inter;
 }
-.calText{
-     font-family: Inter;
-     font-weight: 700;
-     font-size: 28px;
-     line-height: 14px;
+
+.calText {
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 14px;
+}
+
+.kText {
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 97%;
+    color: #023C6C;
+}
+
+.aText {
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 14px;
+    color: #023C6C;
+}
+
+.aDis {
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
 }

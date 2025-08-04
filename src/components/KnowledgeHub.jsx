@@ -1,5 +1,6 @@
 import React from 'react';
 import { imageUrl } from '../imageUrl';
+import '../css/calculator.css'
 
 const KnowledgeHub = () => {
   const knowledgeCards = [
@@ -34,7 +35,7 @@ const KnowledgeHub = () => {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-12">
-          <h2 className="text-4xl font-bold text-blue-900 mb-4">
+          <h2 className=" mb-4 kText">
             Knowledge HUB
           </h2>
           <p className="text-gray-600 text-lg max-w-3xl">
