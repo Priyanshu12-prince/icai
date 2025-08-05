@@ -21,8 +21,8 @@ const LandingPage = () => {
         <div className="flex items-center justify-center gap-4 mb-4">
           
           <div className="text-center mt-[50px]">
-            <div className="text-8xl font-bold imageText mb-[20px]">वित्तीय ज्ञान </div>
-            <div className="text-8xl font-bold imageText">ICAI का अभिमान </div>
+            <div className=" font-bold imageText mb-[20px]">वित्तीय ज्ञान </div>
+            <div className=" font-bold imageText">ICAI का अभिमान </div>
           </div>
             
         </div>

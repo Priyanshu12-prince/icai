@@ -21,15 +21,13 @@
     ;
     border: 2px dotted #FFFFFF33;
     border-radius: 20px;
-    padding: 2px;
+    padding: 20px;
 }
 
 .CalculatorContainer {
-    background: radial-gradient(90.16% 143.01% at 15.32% 21.04%, rgba(165, 239, 255, 0.2) 0%, rgba(110, 191, 244, 0.0447917) 77.08%, rgba(70, 144, 213, 0) 100%)
-        /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
-    ;
+    background: radial-gradient(90.16% 143.01% at 15.32% 21.04%, rgba(165, 239, 255, 0.2) 0%, rgba(110, 191, 244, 0.0447917) 77.08%, rgba(70, 144, 213, 0) 100%);
     border: 2px solid #FFFFFF33;
-    padding: 20px;
+    padding: 50px ;
     border-radius: 20px;
     font-family: Inter;
 }
@@ -38,8 +36,15 @@
     font-family: Inter;
     font-weight: 700;
     font-size: 28px;
-    line-height: 14px;
+    line-height: 24px;
 }
+.calDis {
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFF;
+} 
 
 .kText {
     font-family: Inter;
@@ -179,6 +184,12 @@
 }
 
 @media (max-width: 768px) {
+  .calculatorSection {
+    padding: 20px;
+  }
+  .CalculatorContainer {
+    padding: 10px;
+  }
   .pie-chart-calc {
     width: 200px;
     height: 200px;
@@ -187,15 +198,16 @@
   .chart-labels-calc {
     width: 300px;
     height: 200px;
+    
   }
   
   .left-label-calc {
-    left: -50px;
+    left: -10px;
     font-size: 11px;
   }
   
   .right-label-calc {
-    right: -50px;
+    right: -5px;
     font-size: 11px;
   }
   

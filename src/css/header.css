@@ -8,6 +8,7 @@
 .imageText {
     font-weight: 700;
     line-height: 100%;
+    font-size: 100px;
 
 }
 
@@ -108,7 +109,10 @@
 
 /* Responsive breakpoints */
 @media (max-width: 640px) {
-  /* Extra small screens */
+  
+  .imageText{
+    font-size: 40px;
+  }
   .header-container {
     padding-left: 1rem;
     padding-right: 1rem;
