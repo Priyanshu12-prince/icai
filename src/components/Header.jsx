@@ -12,13 +12,24 @@ const Header = () => {
     'FAQs',
     'Vitya Gyan Mela',
   ];
-  
+
   const [activeNav, setActiveNav] = useState('Home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isHindi, setIsHindi] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+  const toggleLanguage = (lang) => {
+    if (lang === "HI") {
+      setIsHindi(true);
+    } else {
+      setIsHindi(false);
+    }
+    setIsOpen(false);
+  };
+
 
   return (
     <header className="w-full bg-white shadow-sm">
@@ -26,9 +37,9 @@ const Header = () => {
       <div className="flex items-center justify-between px-4 sm:px-6 lg:px-16 h-16">
         {/* Logo */}
         <div className="h-10 w-32 sm:h-12 sm:w-36 lg:h-14 lg:w-42 flex-shrink-0">
-          <img 
-            className="h-full w-full object-contain" 
-            alt="Vitiyagyan" 
+          <img
+            className="h-full w-full object-contain"
+            alt="Vitiyagyan"
             src={imageUrl.logo}
           />
         </div>
@@ -42,8 +53,8 @@ const Header = () => {
                 key={name}
                 onClick={() => setActiveNav(name)}
                 className={`px-3 py-1 rounded text-sm xl:text-base navItem transition-colors duration-200
-                  ${activeNav === name 
-                    ? 'bg-blue-900 text-white' 
+                  ${activeNav === name
+                    ? 'bg-blue-900 text-white'
                     : 'text-gray-700 hover:text-blue-900 hover:bg-gray-100'
                   }
                 `}
@@ -54,23 +65,80 @@ const Header = () => {
           </nav>
 
           {/* Language Selector */}
-          <div className="bg-orange-600 rounded px-2 py-1 flex items-center gap-2 cursor-pointer hover:bg-orange-700 transition-colors duration-200">
-            <span className="text-white text-sm font-bold">ENG</span>
-            <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-            </svg>
+          <div className="relative inline-block text-left">
+            {/* Dropdown Trigger */}
+            <div
+              onClick={() => setIsOpen((prev) => !prev)}
+              className="bg-orange-600 rounded px-2 py-1 flex items-center gap-2 cursor-pointer hover:bg-orange-700 transition-colors duration-200"
+            >
+              <span className="text-white text-sm font-bold">{isHindi ? "हिंदी" : "ENG"}</span>
+              <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fillRule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+
+            {/* Dropdown Menu */}
+
+            {isOpen && (
+              <div className="absolute right-0 mt-1 w-24 bg-white rounded shadow z-10">
+                <div
+                  onClick={() => toggleLanguage("EN")}
+                  className="px-3 py-1 hover:bg-orange-100 text-sm cursor-pointer"
+                >
+                  ENG
+                </div>
+                <div
+                  onClick={() => toggleLanguage("HI")}
+                  className="px-3 py-1 hover:bg-orange-100 text-sm cursor-pointer"
+                >
+                  हिंदी
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
         {/* Mobile Menu Button and Language Selector */}
         <div className="lg:hidden flex items-center gap-3">
           {/* Mobile Language Selector */}
-          <div className="bg-orange-600 rounded px-2 py-1 flex items-center gap-1">
-            <span className="text-white text-xs font-bold">ENG</span>
-            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-            </svg>
+          {/* Mobile Language Selector with Dropdown */}
+          <div className="relative inline-block text-left">
+            <div
+              onClick={() => setIsOpen((prev) => !prev)}
+              className="bg-orange-600 rounded px-2 py-1 flex items-center gap-1 cursor-pointer hover:bg-orange-700 transition-colors duration-200"
+            >
+              <span className="text-white text-xs font-bold">{isHindi ? "हिंदी" : "ENG"}</span>
+              <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fillRule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+
+            {isOpen && (
+              <div className="absolute right-0 mt-1 w-24 bg-white rounded shadow z-10">
+                <div
+                  onClick={() => toggleLanguage("EN")}
+                  className="px-3 py-1 hover:bg-orange-100 text-sm cursor-pointer"
+                >
+                  ENG
+                </div>
+                <div
+                  onClick={() => toggleLanguage("HI")}
+                  className="px-3 py-1 hover:bg-orange-100 text-sm cursor-pointer"
+                >
+                  हिंदी
+                </div>
+              </div>
+            )}
           </div>
+
 
           {/* Hamburger Menu Button */}
           <button
@@ -90,11 +158,10 @@ const Header = () => {
       </div>
 
       {/* Mobile Navigation Menu */}
-      <div className={`lg:hidden transition-all duration-300 ease-in-out ${
-        isMobileMenuOpen 
-          ? 'max-h-96 opacity-100 border-t border-gray-200' 
+      <div className={`lg:hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen
+          ? 'max-h-96 opacity-100 border-t border-gray-200'
           : 'max-h-0 opacity-0 overflow-hidden'
-      }`}>
+        }`}>
         <nav className="px-4 py-2 bg-gray-50">
           {navList.map((name) => (
             <button
@@ -104,8 +171,8 @@ const Header = () => {
                 setIsMobileMenuOpen(false); // Close menu after selection
               }}
               className={`w-full text-left px-4 py-3 rounded-md text-sm transition-colors duration-200 block
-                ${activeNav === name 
-                  ? 'bg-blue-900 text-white' 
+                ${activeNav === name
+                  ? 'bg-blue-900 text-white'
                   : 'text-gray-700 hover:text-blue-900 hover:bg-white'
                 }
               `}
