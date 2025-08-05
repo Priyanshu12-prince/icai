@@ -10,10 +10,10 @@ const Footer = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* About Section */}
           <div className="lg:col-span-2">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+            <h2 className="text-2xl font-bold font-sans text-gray-800 mb-4">
               About This Initiative
             </h2>
-            <p className="text-blue-900 text-sm leading-relaxed text-justify mb-8">
+            <p className="text-blue-900 text-sm leading-relaxed text-justify font-sans mb-8">
               "The Institute of Chartered Accountants of India (ICAI) keenly
               desires that all Indians should be financially literate. In line
               with the Government of India's national mission{' '}
@@ -27,7 +27,7 @@ const Footer = () => {
             </p>
 
             <div>
-              <h3 className="font-bold text-gray-800 mb-3">Follow Us On</h3>
+              <h3 className="font-bold text-gray-800 mb-3 font-sans">Follow Us On</h3>
               <div className="flex items-center gap-4">
                 
               </div>
@@ -36,7 +36,7 @@ const Footer = () => {
 
           {/* Quick Links Section */}
           <div>
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+            <h2 className="text-2xl font-bold font-sans text-gray-800 mb-4">
               Quick Links
             </h2>
             <ul className="space-y-2 mb-8">

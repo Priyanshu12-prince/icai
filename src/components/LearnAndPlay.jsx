@@ -20,12 +20,12 @@ const LearnAndPlay = () => {
     {
       title: "Handling Financial Crises",
       description: "Develop an understanding of appropriate actions to be taken in a financial crisis situation.",
-     image: imageUrl.a2,
+      image: imageUrl.a2,
     },
     {
       title: "Analyze Your Spending",
       description: "Explore your spending preferences in this activity.",
-     image: imageUrl.a3,
+      image: imageUrl.a3,
     },
   ];
 
@@ -43,17 +43,16 @@ const LearnAndPlay = () => {
         </div>
 
         {/* Tabs */}
-        <div className="flex justify-center mb-8">
-          <div className="flex gap-4">
+        <div className="flex justify-center mb-8 px-2">
+          <div className="flex gap-4 overflow-x-auto max-w-full scrollbar-hide">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-8 py-4 rounded font-bold text-sm transition-colors ${
-                  activeTab === tab.id
+                className={`flex-shrink-0 px-6 sm:px-8 py-2 sm:py-4 rounded font-bold text-xs sm:text-sm transition-colors whitespace-nowrap ${activeTab === tab.id
                     ? 'bg-gray-100 text-blue-900'
                     : 'bg-transparent text-white border border-white hover:bg-white hover:text-blue-900'
-                }`}
+                  }`}
               >
                 {tab.label}
               </button>
@@ -61,12 +60,13 @@ const LearnAndPlay = () => {
           </div>
         </div>
 
+
         {/* Content */}
         {activeTab === 'activities' && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {activityCards.map((card, index) => (
               <div key={index} className="bg-white rounded-2xl overflow-hidden shadow-lg">
-                <div 
+                <div
                   className="h-64 bg-cover bg-center"
                   style={{ backgroundImage: `url(${card.image})` }}
                 />

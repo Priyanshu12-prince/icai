@@ -22,6 +22,8 @@ import g9 from '../public/images/g9.png';
 import a1 from "../public/images/a1.png";
 import a2 from "../public/images/a2.png";
 import a3 from "../public/images/a3.png"
+import upIcon from  '../public/images/upIcon.png'
+import orangeIcon from '../public/images/orangeIcon.png'
 
 
 
@@ -52,5 +54,7 @@ export const imageUrl = {
     g9,
     a1,
     a2,
-    a3
+    a3,
+    upIcon,
+    orangeIcon  
 }
