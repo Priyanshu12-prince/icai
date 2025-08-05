@@ -2,16 +2,26 @@ import React from 'react';
 import { imageUrl } from '../imageUrl';
 import "../css/header.css"
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
+  // const navList = [
+  //   'Home',
+  //   'Knowledge Hub',
+  //   'Gallery',
+  //   'Calculator',
+  //   'FAQs',
+  //   'Vitya Gyan Mela',
+  // ];
   const navList = [
-    'Home',
-    'Knowledge Hub',
-    'Gallery',
-    'Calculator',
-    'FAQs',
-    'Vitya Gyan Mela',
-  ];
+    { name: 'Home', path: '/' },
+    { name: 'Knowledge Hub', path: '/knowledge-hub' },
+    { name: 'Gallery', path: '/gallery' },
+    { name: 'Calculator', path: '/calculator' },
+    { name: 'FAQs', path: '/faq' },
+    { name: 'Vitya Gyan Mela', path: '/vitya-gyan-mela' },
+
+  ]
 
   const [activeNav, setActiveNav] = useState('Home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -48,20 +58,22 @@ const Header = () => {
         <div className="hidden lg:flex items-center gap-6">
           {/* Navigation Menu */}
           <nav className="flex items-center gap-4 xl:gap-6">
-            {navList.map((name) => (
-              <button
+            {navList.map(({ name, path }) => (
+              <Link
+                to={path}
                 key={name}
                 onClick={() => setActiveNav(name)}
                 className={`px-3 py-1 rounded text-sm xl:text-base navItem transition-colors duration-200
-                  ${activeNav === name
+      ${activeNav === name
                     ? 'bg-blue-900 text-white'
                     : 'text-gray-700 hover:text-blue-900 hover:bg-gray-100'
                   }
-                `}
+    `}
               >
                 {name}
-              </button>
+              </Link>
             ))}
+
           </nav>
 
           {/* Language Selector */}
@@ -159,27 +171,29 @@ const Header = () => {
 
       {/* Mobile Navigation Menu */}
       <div className={`lg:hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen
-          ? 'max-h-96 opacity-100 border-t border-gray-200'
-          : 'max-h-0 opacity-0 overflow-hidden'
+        ? 'max-h-96 opacity-100 border-t border-gray-200'
+        : 'max-h-0 opacity-0 overflow-hidden'
         }`}>
         <nav className="px-4 py-2 bg-gray-50">
-          {navList.map((name) => (
-            <button
+          {navList.map(({ name, path }) => (
+            <Link
+              to={path}
               key={name}
               onClick={() => {
                 setActiveNav(name);
-                setIsMobileMenuOpen(false); // Close menu after selection
+                setIsMobileMenuOpen(false);
               }}
               className={`w-full text-left px-4 py-3 rounded-md text-sm transition-colors duration-200 block
-                ${activeNav === name
+      ${activeNav === name
                   ? 'bg-blue-900 text-white'
                   : 'text-gray-700 hover:text-blue-900 hover:bg-white'
                 }
-              `}
+    `}
             >
               {name}
-            </button>
+            </Link>
           ))}
+
         </nav>
       </div>
     </header>

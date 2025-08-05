@@ -1,26 +1,20 @@
-import React from 'react';
-import Header from './components/Header';
-import LandingPage from './components/LandingPage';
-import Leadership from './components/Leadership';
-import KnowledgeHub from './components/KnowledgeHub';
-import GallerySection from './components/GallerySection';
-import LearnAndPlay from './components/LearnAndPlay';
-import Calculator from './components/Calculator';
-import FAQ from './components/FAQ';
-import Footer from './components/Footer';
+// App.jsx
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import FAQ from "./pages/FAQ";
 
 function App() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      <LandingPage />
-      <Leadership />
-      <Calculator />
-      <KnowledgeHub />
-      <GallerySection />
-      <LearnAndPlay />
-      <FAQ />
-          <Footer/>
+      <Routes>
+          <Route path="/" element={<Home />} />
+         <Route path="/faq" element={<FAQ />} />
+      </Routes>
+      <Footer />
     </div>
   );
 }
