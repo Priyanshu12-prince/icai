@@ -29,7 +29,9 @@ const Footer = () => {
             <div>
               <h3 className="font-bold text-gray-800 mb-3 font-sans">Follow Us On</h3>
               <div className="flex items-center gap-4">
-                
+                <a href="https://x.com/icaivittiyagyan" target="_blank" rel="noopener noreferrer">
+                  <img src={imageUrl.twitter} alt="Twitter" className="w-8 h-8" />
+                </a>
               </div>
             </div>
           </div>

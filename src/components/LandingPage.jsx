@@ -13,18 +13,19 @@ const LandingPage = () => {
     {
       image: imageUrl.bgImage3,
       text1: "Overview of Banking Functions",
-      text2: "& Loan Schemes"
+      text2: "& Loan Schemes",
+       dis:"Learn about the banking functions and Loan Scheme in India"
     },
-    // Add more slides as needed
     {
-      image: imageUrl.landingImage, // You can replace with another image
+      image: imageUrl.landingImage, 
       text1: "वित्तीय ज्ञान",
       text2: "ICAI का अभिमान"
     },
     {
       image: imageUrl.bgImage3,
-      text1: "Overview of Banking ",
-      text2: " Functions & Loan Schemes"
+        text1: "Overview of Banking Functions",
+      text2: "& Loan Schemes",
+      dis:"Learn about the banking functions and Loan Scheme in India"
     }
   ];
 
@@ -58,12 +59,17 @@ const LandingPage = () => {
         <div className="flex items-center justify-center gap-4 mb-4">
           
           <div className="text-center mt-[50px] px-10">
-            <div className="font-bold imageText mb-[20px] transition-opacity duration-500">
+            <div className=" imageText mb-[20px] transition-opacity duration-500">
               {carouselData[currentSlide].text1}
             </div>
-            <div className="font-bold imageText transition-opacity duration-500">
+            <div className=" imageText transition-opacity duration-500">
               {carouselData[currentSlide].text2}
             </div>
+            {carouselData[currentSlide].dis && (
+              <div className="font-sans text-[20px] mt-4 text-gray-200">
+                {carouselData[currentSlide].dis}
+              </div>
+            )}
           </div>
             
         </div>

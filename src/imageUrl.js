@@ -27,6 +27,7 @@ import orangeIcon from '../public/images/orangeIcon.png'
 import faqImage from '../public/images/faqImage.png'
 import bgImage from '../public/images/bgImage.png'
 import bgImage3 from '../public/images/bgImage4.jpg'
+import twitter from '../public/images/twitter.png';
 
 
 
@@ -62,5 +63,6 @@ export const imageUrl = {
     orangeIcon  ,
     faqImage,
     bgImage ,
-    bgImage3
+    bgImage3,
+    twitter 
 }
