@@ -4,6 +4,9 @@
     font-size: 14px;
     /* ✅ Corrected */
 }
+.transition-bg {
+  transition: background-image 1s ease-in-out;
+}
 
 .imageText {
     font-weight: 700;

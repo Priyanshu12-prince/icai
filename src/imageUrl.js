@@ -25,6 +25,7 @@ import a3 from "../public/images/a3.png"
 import upIcon from  '../public/images/upIcon.png'
 import orangeIcon from '../public/images/orangeIcon.png'
 import faqImage from '../public/images/faqImage.png'
+import bgImage from '../public/images/bgImage.png'
 
 
 
@@ -58,5 +59,6 @@ export const imageUrl = {
     a3,
     upIcon,
     orangeIcon  ,
-    faqImage
+    faqImage,
+    bgImage 
 }
