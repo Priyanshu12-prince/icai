@@ -14,6 +14,7 @@ const Calculator = () => {
     { id: 'loan-emi', label: 'LOAN EMI\nCALCULATOR', active: false },
     { id: 'sip', label: 'SIP\nCALCULATOR', active: false },
     { id: 'simple-interest', label: 'SIMPLE INTEREST\nCALCULATOR', active: false },
+    { id: 'lumpsum', label: 'LUMPSUM\nCALCULATOR', active: false },
   ];
 
   const handleInputChange = (e) => {
@@ -90,6 +91,18 @@ const Calculator = () => {
     };
   };
 
+  const calculateLumpsum = (principal, annualRate, years) => {
+    const rate = annualRate / 100;
+    const maturityAmount = principal * Math.pow(1 + rate, years);
+    const totalReturns = maturityAmount - principal;
+    
+    return {
+      maturityAmount: Math.round(maturityAmount),
+      totalInvestment: Math.round(principal),
+      totalReturns: Math.round(totalReturns)
+    };
+  };
+
   const handleCalculate = () => {
     const amount = parseFloat(formData.amount);
     const rate = parseFloat(formData.rate);
@@ -111,6 +124,9 @@ const Calculator = () => {
         break;
       case 'simple-interest':
         calculationResults = calculateSimpleInterest(amount, rate, duration);
+        break;
+      case 'lumpsum':
+        calculationResults = calculateLumpsum(amount, rate, duration);
         break;
       default:
         calculationResults = calculateLoanEMI(amount, rate, duration);
@@ -148,6 +164,15 @@ const Calculator = () => {
           ratePlaceholder: 'Enter Interest Rate',
           durationPlaceholder: 'Enter Time in Years'
         };
+      case 'lumpsum':
+        return {
+          amount: 'Lumpsum Investment Amount',
+          rate: 'Expected Rate of Return (% per annum)',
+          duration: 'Investment Duration (years)',
+          amountPlaceholder: 'Enter Lumpsum Amount',
+          ratePlaceholder: 'Enter Expected Return Rate',
+          durationPlaceholder: 'Enter Duration in Years'
+        };
       default:
         return {
           amount: 'Loan Amount',
@@ -168,6 +193,8 @@ const Calculator = () => {
         return 'SIP Calculator';
       case 'simple-interest':
         return 'Simple Interest Calculator';
+      case 'lumpsum':
+        return 'Lumpsum Calculator';
       default:
         return 'Loan EMI Calculator';
     }
@@ -181,6 +208,8 @@ const Calculator = () => {
         return 'Fill in the monthly SIP amount, expected rate of return, and investment duration below. Then click on \'calculate\' to view the maturity amount.';
       case 'simple-interest':
         return 'Fill in the principal amount, interest rate, and time period below. Then click on \'calculate\' to view the simple interest and total amount.';
+      case 'lumpsum':
+        return 'Fill in the lumpsum investment amount, expected rate of return, and investment duration below. Then click on \'calculate\' to view the maturity amount.';
       default:
         return 'Fill in the loan amount, interest rate, and loan tenure below. Then click on \'calculate\' to view the resulting EMI and the breakup.';
     }
@@ -258,6 +287,24 @@ const Calculator = () => {
               <h3 className="font-bold mb-2 text-sm sm:text-base">Total Amount</h3>
               <p className="text-xs sm:text-sm mb-1">(Principal + Interest)</p>
               <p className="text-xl sm:text-2xl font-bold">₹ {results.totalAmount.toLocaleString()}</p>
+            </div>
+          </div>
+        );
+      case 'lumpsum':
+        return (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 text-center">
+            <div>
+              <h3 className="font-bold mb-2 text-sm sm:text-base">Maturity Amount</h3>
+              <p className="text-xl sm:text-2xl font-bold">₹ {results.maturityAmount.toLocaleString()}</p>
+            </div>
+            <div>
+              <h3 className="font-bold mb-2 text-sm sm:text-base">Total Investment</h3>
+              <p className="text-xl sm:text-2xl font-bold">₹ {results.totalInvestment.toLocaleString()}</p>
+            </div>
+            <div>
+              <h3 className="font-bold mb-2 text-sm sm:text-base">Total Returns</h3>
+              <p className="text-xs sm:text-sm mb-1">(Gains)</p>
+              <p className="text-xl sm:text-2xl font-bold">₹ {results.totalReturns.toLocaleString()}</p>
             </div>
           </div>
         );
@@ -372,11 +419,13 @@ const Calculator = () => {
                   <div className="chart-labels-calc">
                     <div className="label-calc left-label-calc">
                       {activeTab === 'loan-emi' ? 'Interest Amount' : 
-                       activeTab === 'sip' ? 'Total Returns' : 'Interest Amount'}
+                       activeTab === 'sip' ? 'Total Returns' : 
+                       activeTab === 'lumpsum' ? 'Total Returns' : 'Interest Amount'}
                     </div>
                     <div className="label-calc right-label-calc">
                       {activeTab === 'loan-emi' ? 'Principal' : 
-                       activeTab === 'sip' ? 'Investment' : 'Principal'}
+                       activeTab === 'sip' ? 'Investment' : 
+                       activeTab === 'lumpsum' ? 'Investment' : 'Principal'}
                     </div>
                   </div>
                 </div>
