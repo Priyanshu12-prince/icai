@@ -5,19 +5,13 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
-  // const navList = [
-  //   'Home',
-  //   'Knowledge Hub',
-  //   'Gallery',
-  //   'Calculator',
-  //   'FAQs',
-  //   'Vitya Gyan Mela',
-  // ];
+
   const navList = [
     { name: 'Home', path: '/' },
     { name: 'Knowledge Hub', path: '/knowledge-hub' },
     { name: 'Gallery', path: '/gallery' },
-    { name: 'Calculator', path: '/calculator' },
+    { name: 'Calculator', path: '#calculator' },
+
     { name: 'FAQs', path: '/faq' },
     { name: 'Vitya Gyan Mela', path: 'https://vitiyagyanmela.icai.org' },
 
@@ -58,21 +52,59 @@ const Header = () => {
         <div className="hidden lg:flex items-center gap-6">
           {/* Navigation Menu */}
           <nav className="flex items-center gap-4 xl:gap-6">
-            {navList.map(({ name, path }) => (
-              <Link
-                to={path}
-                key={name}
-                onClick={() => setActiveNav(name)}
-                className={`px-3 py-1 rounded text-sm xl:text-base navItem transition-colors duration-200
-      ${activeNav === name
-                    ? 'bg-blue-900 text-white'
-                    : 'text-gray-700 hover:text-blue-900 hover:bg-gray-100'
+            {navList.map(({ name, path }) => {
+              const isExternal = path.startsWith("http");
+              const isAnchor = path.startsWith("#");
+
+              const handleClick = (e) => {
+                if (isAnchor) {
+                  e.preventDefault();
+                  const id = path.slice(1); // remove '#'
+                  const element = document.getElementById(id);
+                  if (element) {
+                    element.scrollIntoView({ behavior: "smooth" });
                   }
-    `}
-              >
-                {name}
-              </Link>
-            ))}
+                } else {
+                  setActiveNav(name);
+                }
+
+                if (isMobileMenuOpen) {
+                  setIsMobileMenuOpen(false);
+                }
+              };
+
+              if (isExternal) {
+                return (
+                  <a
+                    href={path}
+                    key={name}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`px-3 py-1 rounded text-sm xl:text-base navItem transition-colors duration-200 ${activeNav === name
+                        ? 'bg-blue-900 text-white'
+                        : 'text-gray-700 hover:text-blue-900 hover:bg-gray-100'
+                      }`}
+                  >
+                    {name}
+                  </a>
+                );
+              }
+
+              return (
+                <Link
+                  to={isAnchor ? "" : path}
+                  key={name}
+                  onClick={handleClick}
+                  className={`px-3 py-1 rounded text-sm xl:text-base navItem transition-colors duration-200 ${activeNav === name
+                      ? 'bg-blue-900 text-white'
+                      : 'text-gray-700 hover:text-blue-900 hover:bg-gray-100'
+                    }`}
+                >
+                  {name}
+                </Link>
+              );
+            })}
+
 
           </nav>
 

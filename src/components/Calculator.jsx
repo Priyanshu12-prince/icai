@@ -316,7 +316,7 @@ const Calculator = () => {
   const labels = getInputLabels();
 
   return (
-    <section className=" calculatorSection">
+    <section className=" calculatorSection" id="calculator">
       <div className="">
         {/* Calculator Tabs */}
         <div className="w-full overflow-x-auto">
