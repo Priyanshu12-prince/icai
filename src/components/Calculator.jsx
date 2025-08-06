@@ -14,11 +14,6 @@ const Calculator = () => {
     { id: 'loan-emi', label: 'LOAN EMI\nCALCULATOR', active: false },
     { id: 'sip', label: 'SIP\nCALCULATOR', active: false },
     { id: 'simple-interest', label: 'SIMPLE INTEREST\nCALCULATOR', active: false },
-    { id: 'loan-emi', label: 'LOAN EMI\nCALCULATOR', active: false },
-    { id: 'sip', label: 'SIP\nCALCULATOR', active: false },
-    { id: 'simple-interest', label: 'SIMPLE INTEREST\nCALCULATOR', active: false },
-    { id: 'sip', label: 'SIP\nCALCULATOR', active: false },
-    { id: 'simple-interest', label: 'SIMPLE INTEREST\nCALCULATOR', active: false },
   ];
 
   const handleInputChange = (e) => {
