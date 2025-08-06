@@ -19,7 +19,7 @@ const Header = () => {
     { name: 'Gallery', path: '/gallery' },
     { name: 'Calculator', path: '/calculator' },
     { name: 'FAQs', path: '/faq' },
-    { name: 'Vitya Gyan Mela', path: '/vitya-gyan-mela' },
+    { name: 'Vitya Gyan Mela', path: 'https://vitiyagyanmela.icai.org' },
 
   ]
 
