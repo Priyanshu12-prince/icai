@@ -44,7 +44,7 @@ const Header = () => {
           <img
             className="h-full w-full object-contain"
             alt="Vitiyagyan"
-            src={imageUrl.logo}
+            src={imageUrl.newLogo}
           />
         </div>
 

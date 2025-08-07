@@ -53,7 +53,7 @@ const Footer = () => {
 
             <div className="bg-gray-100 rounded-lg p-2 w-fit">
               <img 
-                src={imageUrl.logo}
+                src={imageUrl.newLogo}
                 alt="Vitiyagyan Logo"
                 className="w-32 h-14 object-cover"
               />

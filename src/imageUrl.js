@@ -28,6 +28,9 @@ import faqImage from '../public/images/faqImage.png'
 import bgImage from '../public/images/bgImage.png'
 import bgImage3 from '../public/images/bgImage4.jpg'
 import twitter from '../public/images/twitter.png';
+import newLogo from '../public/images/newLogo.png';
+import knowledgeImage from "../public/images/knowledgeImage.png";
+import arrow from '../public/images/arrow.png';
 
 
 
@@ -64,5 +67,8 @@ export const imageUrl = {
     faqImage,
     bgImage ,
     bgImage3,
-    twitter 
+    twitter ,
+    newLogo,
+    knowledgeImage,
+    arrow
 }
