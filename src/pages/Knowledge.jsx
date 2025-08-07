@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { imageUrl } from "../imageUrl";
+import LearnAndPlay from "../components/LearnAndPlay";
 
 // Array of images
 const images = [
@@ -27,7 +28,7 @@ const Knowledge = () => {
   return (
     <div className="w-full mb-6 relative">
       {/* Banner Image */}
-      <div className="w-full overflow-hidden">
+      <div className="w-full overflow-hidden ">
         <img
           src={imageUrl.knowledgeImage}
           alt="FAQ Banner"
@@ -36,7 +37,7 @@ const Knowledge = () => {
       </div>
 
       {/* Carousel */}
-      <div className="relative w-full mt-6">
+      <div className="relative w-full mt-10  mb-4">
         {/* Scrollable Grid */}
         <div
           ref={carouselRef}
@@ -74,6 +75,9 @@ const Knowledge = () => {
         >
           <img src={imageUrl.arrow} alt="Next" className="w-6 h-6" />
         </button>
+      </div>
+      <div>
+        <LearnAndPlay/>
       </div>
     </div>
   );
