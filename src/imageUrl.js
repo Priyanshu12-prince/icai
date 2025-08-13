@@ -32,6 +32,12 @@ import twitter from '../public/images/twitter.png';
 import newLogo from '../public/images/newLogo.png';
 import knowledgeImage from "../public/images/knowledgeImage.png";
 import arrow from '../public/images/arrow.png';
+import ar1 from  '../public/images/ar1.png';
+import ar2 from  '../public/images/ar2.png';
+import ar3 from  '../public/images/ar3.png';
+import v1 from  '../public/images/v1.png';
+import v2 from  '../public/images/v2.png';
+import v3 from  '../public/images/v3.png';
 
 
 
@@ -72,5 +78,11 @@ export const imageUrl = {
     twitter ,
     newLogo,
     knowledgeImage,
-    arrow
+    arrow,
+    ar1,
+    ar2,
+    ar3,
+    v1,
+    v2,
+    v3
 }
