@@ -10,7 +10,7 @@ const Header = () => {
     { name: 'Home', path: '/' },
     { name: 'Knowledge Hub', path: '/knowledge-hub' },
     { name: 'Gallery', path: '/gallery' },
-    { name: 'Calculator', path: '#calculator' },
+    { name: 'Calculator', path: '/calculate-interest' },
 
     { name: 'FAQs', path: '/faq' },
     { name: 'Vitya Gyan Mela', path: 'https://vitiyagyanmela.icai.org' },
