@@ -22,7 +22,7 @@ import g9 from '../public/images/g9.png';
 import a1 from "../public/images/a1.png";
 import a2 from "../public/images/a2.png";
 import a3 from "../public/images/a3.png"
-import upIcon from  '../public/images/upIcon.png'
+import upIcon from '../public/images/upIcon.png'
 import orangeIcon from '../public/images/orangeIcon.png'
 import faqImage from '../public/images/faqImage.png'
 import bgImage from '../public/images/bgImage.png'
@@ -32,12 +32,30 @@ import twitter from '../public/images/twitter.png';
 import newLogo from '../public/images/newLogo.png';
 import knowledgeImage from "../public/images/knowledgeImage.png";
 import arrow from '../public/images/arrow.png';
-import ar1 from  '../public/images/ar1.png';
-import ar2 from  '../public/images/ar2.png';
-import ar3 from  '../public/images/ar3.png';
-import v1 from  '../public/images/v1.png';
-import v2 from  '../public/images/v2.png';
-import v3 from  '../public/images/v3.png';
+import ar1 from '../public/images/ar1.png';
+import ar2 from '../public/images/ar2.png';
+import ar3 from '../public/images/ar3.png';
+import v1 from '../public/images/v1.png';
+import v2 from '../public/images/v2.png';
+import v3 from '../public/images/v3.png';
+import page1 from "../public/pdf/page-1.png"
+import page2 from "../public/pdf/page-2.png"
+import page3 from "../public/pdf/page-3.png"
+import page4 from "../public/pdf/page-4.png"
+
+
+import page5 from "../public/pdf/page-5.png"
+
+
+import page6 from "../public/pdf/page-6.png"
+
+
+import page7 from "../public/pdf/page-7.png"
+
+
+import page8 from "../public/pdf/page-8.png"
+
+
 
 
 
@@ -70,12 +88,12 @@ export const imageUrl = {
     a2,
     a3,
     upIcon,
-    orangeIcon  ,
+    orangeIcon,
     faqImage,
-    bgImage ,
+    bgImage,
     bgImage3,
     bgImage4,
-    twitter ,
+    twitter,
     newLogo,
     knowledgeImage,
     arrow,
@@ -84,5 +102,14 @@ export const imageUrl = {
     ar3,
     v1,
     v2,
-    v3
+    v3,
+    page1,
+    page2,
+    page3,
+    page4,
+    page5,
+    page6,
+    page7,
+    page8
 }
+
