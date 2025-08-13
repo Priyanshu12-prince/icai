@@ -9,6 +9,8 @@ const Calculator = () => {
     duration: '',
   });
   const [results, setResults] = useState(null);
+  const [isCalculating, setIsCalculating] = useState(false);
+  const [showResults, setShowResults] = useState(false);
 
   const calculatorTabs = [
     { id: 'loan-emi', label: 'LOAN EMI\nCALCULATOR', active: false },
@@ -17,17 +19,51 @@ const Calculator = () => {
     { id: 'lumpsum', label: 'LUMPSUM\nCALCULATOR', active: false },
   ];
 
+  // Enhanced input validation - only allow numbers and decimal point
   const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    
+    // Remove any non-numeric characters except decimal point
+    let numericValue = value.replace(/[^0-9.]/g, '');
+    
+    // Ensure only one decimal point
+    const decimalCount = (numericValue.match(/\./g) || []).length;
+    if (decimalCount > 1) {
+      numericValue = numericValue.substring(0, numericValue.lastIndexOf('.'));
+    }
+    
+    // Prevent leading zeros (except for decimal numbers like 0.5)
+    if (numericValue.length > 1 && numericValue[0] === '0' && numericValue[1] !== '.') {
+      numericValue = numericValue.substring(1);
+    }
+    
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: numericValue,
     });
+  };
+
+  // Prevent non-numeric key presses
+  const handleKeyPress = (e) => {
+    const allowedKeys = ['Backspace', 'Delete', 'Tab', 'Escape', 'Enter', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
+    const isNumber = /[0-9]/.test(e.key);
+    const isDecimal = e.key === '.';
+    
+    if (!isNumber && !isDecimal && !allowedKeys.includes(e.key)) {
+      e.preventDefault();
+    }
+    
+    // Prevent multiple decimal points
+    if (isDecimal && e.target.value.includes('.')) {
+      e.preventDefault();
+    }
   };
 
   const handleTabClick = (tabId) => {
     setActiveTab(tabId);
     setFormData({ amount: '', rate: '', duration: '' });
     setResults(null);
+    setShowResults(false);
   };
 
   const calculateLoanEMI = (principal, rate, tenure) => {
@@ -103,15 +139,92 @@ const Calculator = () => {
     };
   };
 
-  const handleCalculate = () => {
+  // Calculate percentages for dynamic graph display
+  const getGraphData = () => {
+    if (!results || !showResults) {
+      return {
+        orangePercent: 50,
+        bluePercent: 50,
+        orangeValue: 0,
+        blueValue: 0,
+        orangeLabel: 'Interest Amount',
+        blueLabel: 'Principal Amount'
+      };
+    }
+
+    let orangeValue, blueValue, orangeLabel, blueLabel, total;
+
+    switch (activeTab) {
+      case 'loan-emi':
+        orangeValue = results.totalInterest;
+        blueValue = results.principal;
+        orangeLabel = 'Interest Amount';
+        blueLabel = 'Principal Amount';
+        total = results.totalPayment;
+        break;
+      case 'sip':
+        orangeValue = results.totalReturns;
+        blueValue = results.totalInvestment;
+        orangeLabel = 'Total Returns';
+        blueLabel = 'Total Investment';
+        total = results.maturityAmount;
+        break;
+      case 'simple-interest':
+        orangeValue = results.interest;
+        blueValue = results.principal;
+        orangeLabel = 'Interest Amount';
+        blueLabel = 'Principal Amount';
+        total = results.totalAmount;
+        break;
+      case 'lumpsum':
+        orangeValue = results.totalReturns;
+        blueValue = results.totalInvestment;
+        orangeLabel = 'Total Returns';
+        blueLabel = 'Total Investment';
+        total = results.maturityAmount;
+        break;
+      default:
+        orangeValue = 0;
+        blueValue = 0;
+        orangeLabel = 'Interest Amount';
+        blueLabel = 'Principal Amount';
+        total = 0;
+    }
+
+    const orangePercent = total > 0 ? (orangeValue / total) * 100 : 50;
+    const bluePercent = total > 0 ? (blueValue / total) * 100 : 50;
+
+    return {
+      orangePercent,
+      bluePercent,
+      orangeValue,
+      blueValue,
+      orangeLabel,
+      blueLabel
+    };
+  };
+
+  const handleCalculate = async () => {
     const amount = parseFloat(formData.amount);
     const rate = parseFloat(formData.rate);
     const duration = parseFloat(formData.duration);
 
     if (!amount || !rate || !duration) {
-      alert('Please fill in all fields');
+      alert('Please fill in all fields with valid numbers');
       return;
     }
+
+    if (amount <= 0 || rate <= 0 || duration <= 0) {
+      alert('Please enter positive values for all fields');
+      return;
+    }
+
+    // Start loading state
+    setIsCalculating(true);
+    setShowResults(false);
+
+    // Simulate calculation time for better UX
+    await new Promise(resolve => setTimeout(resolve, 1500));
 
     let calculationResults;
 
@@ -133,6 +246,12 @@ const Calculator = () => {
     }
 
     setResults(calculationResults);
+    setIsCalculating(false);
+    
+    // Delay showing results for smooth animation
+    setTimeout(() => {
+      setShowResults(true);
+    }, 100);
   };
 
   const getInputLabels = () => {
@@ -216,20 +335,56 @@ const Calculator = () => {
   };
 
   const renderResults = () => {
-    if (!results) {
+    if (!results || !showResults) {
       return (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 text-center">
-          <div>
-            <h3 className="font-bold mb-2 text-sm sm:text-base">Result 1</h3>
-            <p className="text-xl sm:text-2xl font-bold">₹ 0</p>
+          <div className={`result-card ${isCalculating ? 'loading' : ''}`}>
+            <h3 className="font-bold mb-2 text-sm sm:text-base">
+              {isCalculating ? (
+                <div className="loading-skeleton-text"></div>
+              ) : (
+                'Result 1'
+              )}
+            </h3>
+            <p className="text-xl sm:text-2xl font-bold">
+              {isCalculating ? (
+                <div className="loading-skeleton-number"></div>
+              ) : (
+                '₹ 0'
+              )}
+            </p>
           </div>
-          <div>
-            <h3 className="font-bold mb-2 text-sm sm:text-base">Result 2</h3>
-            <p className="text-xl sm:text-2xl font-bold">₹ 0</p>
+          <div className={`result-card ${isCalculating ? 'loading' : ''}`}>
+            <h3 className="font-bold mb-2 text-sm sm:text-base">
+              {isCalculating ? (
+                <div className="loading-skeleton-text"></div>
+              ) : (
+                'Result 2'
+              )}
+            </h3>
+            <p className="text-xl sm:text-2xl font-bold">
+              {isCalculating ? (
+                <div className="loading-skeleton-number"></div>
+              ) : (
+                '₹ 0'
+              )}
+            </p>
           </div>
-          <div>
-            <h3 className="font-bold mb-2 text-sm sm:text-base">Result 3</h3>
-            <p className="text-xl sm:text-2xl font-bold">₹ 0</p>
+          <div className={`result-card ${isCalculating ? 'loading' : ''}`}>
+            <h3 className="font-bold mb-2 text-sm sm:text-base">
+              {isCalculating ? (
+                <div className="loading-skeleton-text"></div>
+              ) : (
+                'Result 3'
+              )}
+            </h3>
+            <p className="text-xl sm:text-2xl font-bold">
+              {isCalculating ? (
+                <div className="loading-skeleton-number"></div>
+              ) : (
+                '₹ 0'
+              )}
+            </p>
           </div>
         </div>
       );
@@ -238,7 +393,7 @@ const Calculator = () => {
     switch (activeTab) {
       case 'loan-emi':
         return (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 text-center results-fade-in">
             <div>
               <h3 className="font-bold mb-2 text-sm sm:text-base">Your EMI</h3>
               <p className="text-xl sm:text-2xl font-bold">₹ {results.emi.toLocaleString()}</p>
@@ -256,7 +411,7 @@ const Calculator = () => {
         );
       case 'sip':
         return (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 text-center results-fade-in">
             <div>
               <h3 className="font-bold mb-2 text-sm sm:text-base">Maturity Amount</h3>
               <p className="text-xl sm:text-2xl font-bold">₹ {results.maturityAmount.toLocaleString()}</p>
@@ -274,7 +429,7 @@ const Calculator = () => {
         );
       case 'simple-interest':
         return (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 text-center results-fade-in">
             <div>
               <h3 className="font-bold mb-2 text-sm sm:text-base">Simple Interest</h3>
               <p className="text-xl sm:text-2xl font-bold">₹ {results.interest.toLocaleString()}</p>
@@ -292,7 +447,7 @@ const Calculator = () => {
         );
       case 'lumpsum':
         return (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 text-center results-fade-in">
             <div>
               <h3 className="font-bold mb-2 text-sm sm:text-base">Maturity Amount</h3>
               <p className="text-xl sm:text-2xl font-bold">₹ {results.maturityAmount.toLocaleString()}</p>
@@ -314,6 +469,7 @@ const Calculator = () => {
   };
 
   const labels = getInputLabels();
+  const graphData = getGraphData();
 
   return (
     <section className=" calculatorSection" id="calculator">
@@ -356,8 +512,12 @@ const Calculator = () => {
                   name="amount"
                   value={formData.amount}
                   onChange={handleInputChange}
+                  onKeyDown={handleKeyPress}
                   placeholder={labels.amountPlaceholder}
                   className="w-full px-3 py-2 sm:px-4 bg-gray-100 text-gray-900 rounded text-sm sm:text-base"
+                  disabled={isCalculating}
+                  min="0"
+                  step="any"
                 />
               </div>
 
@@ -368,8 +528,13 @@ const Calculator = () => {
                   name="rate"
                   value={formData.rate}
                   onChange={handleInputChange}
+                  onKeyDown={handleKeyPress}
                   placeholder={labels.ratePlaceholder}
                   className="w-full px-3 py-2 sm:px-4 bg-gray-100 text-gray-900 rounded text-sm sm:text-base"
+                  disabled={isCalculating}
+                  min="0"
+                  max="100"
+                  step="any"
                 />
               </div>
 
@@ -380,16 +545,28 @@ const Calculator = () => {
                   name="duration"
                   value={formData.duration}
                   onChange={handleInputChange}
+                  onKeyDown={handleKeyPress}
                   placeholder={labels.durationPlaceholder}
                   className="w-full px-3 py-2 sm:px-4 bg-gray-100 text-gray-900 rounded text-sm sm:text-base"
+                  disabled={isCalculating}
+                  min="0"
+                  step="any"
                 />
               </div>
 
               <button
                 onClick={handleCalculate}
-                className="bg-orange-600 hover:bg-orange-700 text-white  sm:w-auto px-6 sm:px-8 py-2 sm:py-3 rounded-lg font-bold transition-colors"
+                disabled={isCalculating}
+                className={`calculate-button ${isCalculating ? 'calculating' : ''} bg-orange-600 hover:bg-orange-700 text-white sm:w-auto px-6 sm:px-8 py-2 sm:py-3 rounded-lg font-bold transition-all duration-300`}
               >
-                CALCULATE
+                {isCalculating ? (
+                  <div className="flex items-center justify-center">
+                    <div className="loading-spinner"></div>
+                    <span className="ml-2">CALCULATING...</span>
+                  </div>
+                ) : (
+                  'CALCULATE'
+                )}
               </button>
             </div>
           </div>
@@ -407,7 +584,7 @@ const Calculator = () => {
 
               <div className="flex flex-col items-center sm:flex-row sm:justify-center sm:gap-6">
                 <div className="chart-container-calc">
-                  <div className="pie-chart-calc">
+                  <div className={`pie-chart-calc ${isCalculating ? 'chart-loading' : ''} ${showResults ? 'chart-loaded' : ''}`}>
                     <div className="pie-half-calc left-half-calc">
                       <div className="pie-segment-calc orange-gradient-calc"></div>
                     </div>
@@ -415,17 +592,28 @@ const Calculator = () => {
                       <div className="pie-segment-calc blue-gradient-calc"></div>
                     </div>
                     <div className="center-circle-calc"></div>
+                    {isCalculating && <div className="chart-loading-overlay"></div>}
+                    
+                    {/* Dynamic Value Display in Graph */}
+                    {showResults && results && (
+                      <>
+                        <div className="graph-value-display orange-value">
+                          <div className="value-amount">₹ {graphData.orangeValue.toLocaleString()}</div>
+                          <div className="value-label">{graphData.orangeLabel}</div>
+                        </div>
+                        <div className="graph-value-display blue-value">
+                          <div className="value-amount">₹ {graphData.blueValue.toLocaleString()}</div>
+                          <div className="value-label">{graphData.blueLabel}</div>
+                        </div>
+                      </>
+                    )}
                   </div>
                   <div className="chart-labels-calc">
                     <div className="label-calc left-label-calc">
-                      {activeTab === 'loan-emi' ? 'Interest Amount' : 
-                       activeTab === 'sip' ? 'Total Returns' : 
-                       activeTab === 'lumpsum' ? 'Total Returns' : 'Interest Amount'}
+                      {graphData.orangeLabel}
                     </div>
                     <div className="label-calc right-label-calc">
-                      {activeTab === 'loan-emi' ? 'Principal' : 
-                       activeTab === 'sip' ? 'Investment' : 
-                       activeTab === 'lumpsum' ? 'Investment' : 'Principal'}
+                      {graphData.blueLabel}
                     </div>
                   </div>
                 </div>

@@ -67,174 +67,556 @@
     font-size: 14px;
     line-height: 19px;
 }
-/* CSS Pie Chart for Calculator Component */
 
-.chart-container-calc {
-  position: relative;
-  display: inline-block;
-  margin: 0 auto;
+/* Enhanced Loading States */
+.calculate-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
 }
 
-/* Pie Chart */
+.calculate-button.calculating {
+    background-color: #d97706 !important;
+    cursor: not-allowed;
+    transform: scale(0.98);
+}
+
+.loading-spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Loading Skeleton Animations */
+.loading-skeleton-text {
+    height: 16px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.1) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 4px;
+    width: 80px;
+    margin: 0 auto;
+}
+
+.loading-skeleton-number {
+    height: 24px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.1) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 4px;
+    width: 120px;
+    margin: 0 auto;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.result-card.loading {
+    opacity: 0.7;
+    transform: scale(0.98);
+    transition: all 0.3s ease;
+}
+
+.results-fade-in {
+    animation: fadeInResults 0.6s ease-out;
+}
+
+@keyframes fadeInResults {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced 3D Pie Chart for Calculator Component */
+
+.chart-container-calc {
+    position: relative;
+    display: inline-block;
+    margin: 0 auto;
+    perspective: 1200px;
+    transform-style: preserve-3d;
+}
+
+/* Enhanced 3D Pie Chart */
 .pie-chart-calc {
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  position: relative;
-  overflow: hidden;
-  margin: 0 auto;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.3),
+        0 5px 15px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: rotateX(15deg) rotateY(-10deg);
+    transition: all 0.4s ease;
+    transform-style: preserve-3d;
+}
+
+.pie-chart-calc:hover {
+    transform: rotateX(20deg) rotateY(-15deg) scale(1.05);
+    box-shadow: 
+        0 20px 45px rgba(0, 0, 0, 0.4),
+        0 8px 20px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .pie-half-calc {
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  top: 0;
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    transform-style: preserve-3d;
 }
 
 .left-half-calc {
-  left: 0;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    left: 0;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
 .right-half-calc {
-  right: 0;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    right: 0;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
 .pie-segment-calc {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
+    transition: all 0.4s ease;
+    transform-style: preserve-3d;
 }
 
-/* Gradients */
+/* Updated Orange Gradient with User's Design */
 .orange-gradient-calc {
-  background: linear-gradient(180deg, #F2F2F2 0%, #DA702D 100%);
+    background: linear-gradient(180deg, #F2F2F2 0%, #DA702D 100%);
+    position: relative;
+    transform: translateZ(15px);
+    box-shadow: 
+        0 0 20px rgba(218, 112, 45, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 
+.orange-gradient-calc::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        rgba(255, 255, 255, 0.3) 0%, 
+        transparent 50%, 
+        rgba(0, 0, 0, 0.1) 100%);
+    pointer-events: none;
+}
+
+.orange-gradient-calc:hover {
+    transform: translateZ(20px);
+    box-shadow: 
+        0 0 30px rgba(218, 112, 45, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Enhanced Blue Gradient with 3D Effect */
 .blue-gradient-calc {
-  background: linear-gradient(0deg, #023C6C 0%, #64A3D9 100%);
+    background: linear-gradient(225deg, 
+        #64A3D9 0%, 
+        #4A8BC2 25%, 
+        #3574AB 50%, 
+        #235D94 75%, 
+        #023C6C 100%);
+    position: relative;
+    transform: translateZ(8px);
+    box-shadow: 
+        0 0 15px rgba(2, 60, 108, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 
-/* Center circle for 3D effect */
+.blue-gradient-calc::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(225deg, 
+        rgba(255, 255, 255, 0.2) 0%, 
+        transparent 50%, 
+        rgba(0, 0, 0, 0.1) 100%);
+    pointer-events: none;
+}
+
+.blue-gradient-calc:hover {
+    transform: translateZ(12px);
+    box-shadow: 
+        0 0 25px rgba(2, 60, 108, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Enhanced Center circle for 3D effect */
 .center-circle-calc {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50px;
-  height: 50px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  backdrop-filter: blur(10px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateZ(25px);
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle, 
+        rgba(255, 255, 255, 0.2) 0%, 
+        rgba(255, 255, 255, 0.1) 50%, 
+        rgba(0, 0, 0, 0.1) 100%);
+    border-radius: 50%;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 5px 15px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
-/* Chart Labels */
+/* Dynamic Value Display in Graph */
+.graph-value-display {
+    position: absolute;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+    pointer-events: none;
+    text-align: center;
+    z-index: 20;
+    animation: valueSlideIn 0.6s ease-out;
+}
+
+.graph-value-display .value-amount {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.graph-value-display .value-label {
+    font-size: 10px;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.orange-value {
+    top: 30%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    color: #023C6C;
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
+}
+
+.blue-value {
+    top: 70%;
+    right: 25%;
+    transform: translate(50%, -50%);
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+@keyframes valueSlideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Chart Loading States */
+.chart-loading {
+    animation: chartPulse 1.5s ease-in-out infinite;
+}
+
+.chart-loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(255, 255, 255, 0.05) 50%, 
+        transparent 100%);
+    border-radius: 50%;
+    animation: loadingPulse 1s ease-in-out infinite;
+    z-index: 10;
+}
+
+.chart-loaded {
+    animation: chartReveal 0.8s ease-out;
+}
+
+@keyframes chartPulse {
+    0%, 100% { 
+        opacity: 0.7; 
+        transform: rotateX(15deg) rotateY(-10deg) scale(0.95);
+    }
+    50% { 
+        opacity: 1; 
+        transform: rotateX(15deg) rotateY(-10deg) scale(1);
+    }
+}
+
+@keyframes loadingPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes chartReveal {
+    from {
+        opacity: 0;
+        transform: rotateX(15deg) rotateY(-10deg) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: rotateX(15deg) rotateY(-10deg) scale(1);
+    }
+}
+
+/* Chart Labels with Enhanced Styling */
 .chart-labels-calc {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 350px;
-  height: 250px;
-  pointer-events: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    height: 250px;
+    pointer-events: none;
 }
 
 .label-calc {
-  position: absolute;
-  font-size: 12px;
-  opacity: 0.85;
-  font-weight: 500;
-  top: 50%;
-  transform: translateY(-50%);
-  color: white;
+    position: absolute;
+    font-size: 12px;
+    opacity: 0.9;
+    font-weight: 600;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    padding: 4px 8px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .left-label-calc {
-  left: -70px;
-  text-align: right;
+    left: -70px;
+    text-align: right;
 }
 
 .right-label-calc {
-  right: -70px;
-  text-align: left;
+    right: -70px;
+    text-align: left;
+}
+
+/* Input Validation Styling */
+input[type="number"]:invalid {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 1px #ef4444;
+}
+
+input[type="number"]:valid {
+    border-color: #10b981;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Remove number input arrows */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
 }
 
 /* Responsive adjustments for calculator */
 @media (max-width: 1024px) {
-  .pie-chart-calc {
-    width: 220px;
-    height: 220px;
-  }
-  
-  .chart-labels-calc {
-    width: 320px;
-    height: 220px;
-  }
-  
-  .left-label-calc {
-    left: -60px;
-  }
-  
-  .right-label-calc {
-    right: -60px;
-  }
+    .pie-chart-calc {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .chart-labels-calc {
+        width: 320px;
+        height: 220px;
+    }
+    
+    .left-label-calc {
+        left: -60px;
+    }
+    
+    .right-label-calc {
+        right: -60px;
+    }
+    
+    .orange-value {
+        top: 35%;
+        left: 30%;
+    }
+    
+    .blue-value {
+        top: 65%;
+        right: 30%;
+    }
+    
+    .graph-value-display .value-amount {
+        font-size: 12px;
+    }
+    
+    .graph-value-display .value-label {
+        font-size: 9px;
+    }
 }
 
 @media (max-width: 768px) {
-  .calculatorSection {
-    padding: 20px;
-  }
-  .CalculatorContainer {
-    padding: 10px;
-  }
-  .pie-chart-calc {
-    width: 200px;
-    height: 200px;
-  }
-  
-  .chart-labels-calc {
-    width: 300px;
-    height: 200px;
+    .calculatorSection {
+        padding: 20px;
+    }
+    .CalculatorContainer {
+        padding: 10px;
+    }
+    .pie-chart-calc {
+        width: 200px;
+        height: 200px;
+        transform: rotateX(10deg) rotateY(-5deg);
+    }
     
-  }
-  
-  .left-label-calc {
-    left: -10px;
-    font-size: 11px;
-  }
-  
-  .right-label-calc {
-    right: -5px;
-    font-size: 11px;
-  }
-  
-  .center-circle-calc {
-    width: 40px;
-    height: 40px;
-  }
+    .pie-chart-calc:hover {
+        transform: rotateX(15deg) rotateY(-10deg) scale(1.03);
+    }
+    
+    .chart-labels-calc {
+        width: 300px;
+        height: 200px;
+    }
+    
+    .left-label-calc {
+        left: -10px;
+        font-size: 11px;
+    }
+    
+    .right-label-calc {
+        right: -5px;
+        font-size: 11px;
+    }
+    
+    .center-circle-calc {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .orange-gradient-calc {
+        transform: translateZ(10px);
+    }
+    
+    .blue-gradient-calc {
+        transform: translateZ(5px);
+    }
+    
+    .orange-value {
+        top: 40%;
+        left: 35%;
+    }
+    
+    .blue-value {
+        top: 60%;
+        right: 35%;
+    }
+    
+    .graph-value-display .value-amount {
+        font-size: 11px;
+    }
+    
+    .graph-value-display .value-label {
+        font-size: 8px;
+    }
 }
 
-/* Hover effects */
+/* Enhanced Hover effects */
 .pie-chart-calc:hover .pie-segment-calc {
-  filter: brightness(1.1);
-  transition: filter 0.3s ease;
+    filter: brightness(1.15) saturate(1.1);
+    transition: filter 0.4s ease;
 }
 
-/* Animation */
+.pie-chart-calc:hover .orange-gradient-calc {
+    box-shadow: 
+        0 0 35px rgba(218, 112, 45, 0.7),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.pie-chart-calc:hover .blue-gradient-calc {
+    box-shadow: 
+        0 0 30px rgba(2, 60, 108, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced Animation */
 .pie-chart-calc {
-  animation: fadeInChart 0.8s ease-in-out;
+    animation: fadeInChart 1s ease-in-out;
 }
 
 @keyframes fadeInChart {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+    from {
+        opacity: 0;
+        transform: rotateX(0deg) rotateY(0deg) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: rotateX(15deg) rotateY(-10deg) scale(1);
+    }
+}
+
+/* Subtle glow effect for the entire chart */
+.chart-container-calc::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: radial-gradient(circle, 
+        rgba(218, 112, 45, 0.1) 0%, 
+        rgba(2, 60, 108, 0.05) 50%, 
+        transparent 100%);
+    border-radius: 50%;
+    z-index: -1;
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.8; }
 }
 
