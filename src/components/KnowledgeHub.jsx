@@ -1,7 +1,7 @@
 import React from 'react';
 import { imageUrl } from '../imageUrl';
 import '../css/calculator.css'
-
+import { Link } from 'react-router-dom';
 const KnowledgeHub = () => {
   const knowledgeCards = [
     {
@@ -52,7 +52,7 @@ const KnowledgeHub = () => {
               key={index}
               className=""
             >
-             
+             <Link to="/page">
               <div className="">
                 <img
                   src={card.icon}
@@ -60,6 +60,7 @@ const KnowledgeHub = () => {
                  
                 />
               </div>
+              </Link>
             </div>
           ))}
         </div>
