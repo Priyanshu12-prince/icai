@@ -26,14 +26,7 @@ const Footer = () => {
               campaigns, developing e-learning course modules, etc."
             </p>
 
-            <div>
-              <h3 className="font-bold text-gray-800 mb-3 font-sans">Follow Us On</h3>
-              <div className="flex items-center gap-4">
-                <a href="https://x.com/icaivittiyagyan" target="_blank" rel="noopener noreferrer">
-                  <img src={imageUrl.twitter} alt="Twitter" className="w-8 h-8" />
-                </a>
-              </div>
-            </div>
+           
           </div>
 
           {/* Quick Links Section */}
@@ -52,7 +45,7 @@ const Footer = () => {
             </ul>
 
             <div className="bg-gray-100 rounded-lg p-2 w-fit">
-              <img 
+              <img
                 src={imageUrl.newLogo}
                 alt="Vitiyagyan Logo"
                 className="w-32 h-14 object-cover"
@@ -60,6 +53,52 @@ const Footer = () => {
             </div>
           </div>
         </div>
+         <div className='flex gap-3'>
+              <div className='flex flex-col items-center justify-center'>
+                <h3 className="font-bold text-gray-800 mb-3 font-sans">Follow Us On</h3>
+                <div className="flex items-center gap-4">
+                  <a href="https://x.com/icaivittiyagyan" target="_blank" rel="noopener noreferrer">
+                    <img src={imageUrl.twitter} alt="Twitter" className="w-8 h-8" />
+                  </a>
+                </div>
+              </div>
+
+              <div className='flex flex-col items-center justify-center'>
+                <h3 className="font-bold text-gray-800 mb-3 font-sans">WIRC of ICAI</h3>
+                <a href="https://wirc-icai.org/wirc/branch" target="_blank" rel="noopener noreferrer" className='font-sans, text-blue-500 text-[12px] text-center'>
+                  wirc-icai.org/wirc/branch
+                </a>
+              </div>
+
+              <div className='flex flex-col items-center  justify-center '>
+                <h3 className="font-bold text-gray-800 mb-3 font-sans ">SIRC of ICAI</h3>
+                <a href="https://www.sirc-icai.org/statewise-branches-of-sirc-of-icai.phpirc/branch" target="_blank" rel="noopener noreferrer" className='font-sans, text-blue-500 text-[12px] text-center'>
+                  www.sirc-icai.org/statewise-branches-of-sirc-of-icai.phpirc/branch
+                </a>
+              </div>
+
+              <div className='flex flex-col items-center  justify-center '>
+                <h3 className="font-bold text-gray-800 mb-3 font-sans ">EIRC of ICAI</h3>
+                <a href="https://eirc-icai.org/overview/branches-of-eirc" target="_blank" rel="noopener noreferrer" className='font-sans, text-blue-500 text-[12px] text-center'>
+                 https://eirc-icai.org/overview/branches-of-eirc
+                </a>
+              </div>
+
+              
+              <div className='flex flex-col items-center  justify-center '>
+                <h3 className="font-bold text-gray-800 mb-3 font-sans ">CIRC of ICA</h3>
+                <a href="https://circ.icai.org/branch-contact-details-2" target="_blank" rel="noopener noreferrer" className='font-sans, text-blue-500 text-[12px] text-center'>
+                https://circ.icai.org/branch-contact-details-2/
+                </a>
+              </div>
+
+              <div className='flex flex-col items-center  justify-center '>
+                <h3 className="font-bold text-gray-800 mb-3 font-sans ">NIRC of ICAI</h3>
+                <a href="https://nirc.icai.org/branches-of-nirc/" target="_blank" rel="noopener noreferrer" className='font-sans, text-blue-500 text-[12px] text-center'>
+                https://nirc.icai.org/branches-of-nirc/
+                </a>
+              </div>
+            </div>
       </div>
     </footer>
   );

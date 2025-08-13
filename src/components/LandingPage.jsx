@@ -10,6 +10,9 @@ const LandingPage = () => {
       text1: "वित्तीय ज्ञान",
       text2: "ICAI का अभिमान"
     },
+       {
+      image: imageUrl.bgImage4,
+    },
     {
       image: imageUrl.bgImage3,
       text1: "Overview of Banking Functions",
