@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import FAQ from "./pages/FAQ";
 import Knowledge from "./pages/Knowledge";
 import CalculatorPage from "./pages/Calculator";
+import PageTab from './components/LearnTab'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/knowledge-hub" element={<Knowledge />} />
             <Route path="/calculate-interest" element={<CalculatorPage />} />
+               <Route path="/page" element={<PageTab />} />
       </Routes>
       <Footer />
     </div>
