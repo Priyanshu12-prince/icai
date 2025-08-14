@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import YouTube from "react-youtube";
 import Book from "./Book"; // Import your Book component
 import LearnAndPlay from "./LearnAndPlay";
+import PlayQuize from "./PlayQuize";
 const LearnTab = () => {
   const [activeTab, setActiveTab] = useState("learn");
   const tabs = [
@@ -61,6 +62,7 @@ const LearnTab = () => {
   const renderPlay = () => (
     <div className="p-8 text-center text-white">
       <p>Games or interactive activities will appear here!</p>
+      <PlayQuize/>
     </div>
   );
 
